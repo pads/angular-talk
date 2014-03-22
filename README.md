@@ -17,3 +17,7 @@ Requires [node](http://nodejs.org/)
     node app.js
 
 Navigate to `http://localhost:3000`
+
+# Demo
+
+There is a hosted version available via [Heroku](http://brumjs-angular.herokuapp.com/)
