@@ -21,5 +21,10 @@ slideshowModule.controller('slideshowController', ['$scope', 'Slide',
 ]);
 
 slideshowModule.factory('Slide', ['$resource', function ($resource) {
-  return $resource('/api/slides/:slideId');
+  return $resource('/api/slides/:slideId', {}, {
+    get: {
+      method: 'GET',
+      cache: true
+    }
+  });
 }]);
