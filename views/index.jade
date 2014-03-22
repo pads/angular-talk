@@ -2,4 +2,8 @@ extends layout
 
 block content
   h1= title
-  p Coming Soon!
+  main(data-ng-controller='slideshowController')
+    h2(data-ng-bind='currentSlide.title')
+    section(data-ng-bind-html='currentSlide.contents')
+    button.pure-button.fa.fa-caret-left(data-ng-click='previousSlide()', data-ng-show='slideIndex > 0')
+    button.pure-button.fa.fa-caret-right(data-ng-click='nextSlide()', data-ng-hide='slideIndex == allSlides.length - 1')

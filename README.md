@@ -18,6 +18,10 @@ Requires [node](http://nodejs.org/)
 
 Navigate to `http://localhost:3000`
 
+## Testing
+
+    npm install -g karma-cli
+
 # Demo
 
 There is a hosted version available via [Heroku](http://brumjs-angular.herokuapp.com/)

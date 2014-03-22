@@ -12,5 +12,10 @@
   },
   "engines": {
     "node": "0.10.x"
+  },
+  "devDependencies": {
+    "karma": "~0.12.1",
+    "karma-jasmine": "~0.1.5",
+    "karma-phantomjs-launcher": "~0.1.2"
   }
 }
