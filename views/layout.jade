@@ -1,5 +1,5 @@
 doctype html
-html
+html(data-ng-app='mainApp')
   head
     title= title
     link(rel='stylesheet', href='/lib/pure/pure.css')
@@ -7,5 +7,6 @@ html
   body
     block content
     script(src='/lib/angular/angular.js')
-    script(src='/lib/angular/angular-resource.js')
-    script(src='/lib/angular/angular-route.js')
+    script(src='/lib/angular-resource/angular-resource.js')
+    script(src='/lib/angular-route/angular-route.js')
+    script(src='/javascripts/app.js')
