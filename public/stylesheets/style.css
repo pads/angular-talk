@@ -1,6 +1,7 @@
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 20px;
+  font: 36px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -8,5 +9,35 @@ a {
 }
 
 h1 {
+    font-size: 52px;
     text-align: center;
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 48px;
+}
+
+main {
+    width: 80%;
+    margin: 0 auto;
+}
+
+img {
+    margin-top: 100px;
+    float: right;
+}
+
+article {
+    position: relative;
+    height: 530px;
+    padding: 20px;
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+pre {
+    padding: 10px;
+    background: #d3d3d3;
 }

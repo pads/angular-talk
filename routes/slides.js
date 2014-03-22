@@ -2,7 +2,8 @@ var slides = [
   {
     id: 1,
     title: 'Foo',
-    contents: '<b>Bar</b>'
+    contents: '<h2>Subtitle</h2><ul><li>List Item</li><li>List Item</li></ul><pre>Some code</pre>',
+    image: 'http://placekitten.com/200/200'
   },
   {
     id: 2,
