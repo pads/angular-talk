@@ -91,12 +91,10 @@ utilsModule.directive('arrowKey', function () {
         scope.$apply(function() {
           scope.$eval(attributes.left);
         });
-        event.preventDefault();
       } else if (event.keyCode === 39) {
         scope.$apply(function() {
           scope.$eval(attributes.right);
         });
-        event.preventDefault();
       }
     });
   };
