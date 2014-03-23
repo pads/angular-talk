@@ -5,7 +5,9 @@ html(data-ng-app='mainApp')
     link(rel='stylesheet', href='/lib/pure/pure.css')
     link(rel='stylesheet', href='/lib/fontawesome/css/font-awesome.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+  body(data-ng-controller='slideshowController',
+       data-arrow-key, data-left='previousSlide()', data-right='nextSlide()'
+       tabindex='0')
     block content
     script(src='/lib/angular/angular.js')
     script(src='/lib/angular-resource/angular-resource.js')

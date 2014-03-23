@@ -1,5 +1,6 @@
-var mainModule = angular.module('mainApp', ['ngSanitize', 'slideshow']);
+var mainModule = angular.module('mainApp', ['ngSanitize', 'slideshow', 'utils']);
 var slideshowModule = angular.module('slideshow', ['ngResource']);
+var utilsModule = angular.module('utils', []);
 
 slideshowModule.controller('slideshowController', ['$scope', 'Slide',
   function ($scope, Slide) {
@@ -28,3 +29,21 @@ slideshowModule.factory('Slide', ['$resource', function ($resource) {
     }
   });
 }]);
+
+utilsModule.directive('arrowKey', function () {
+  return function(scope, element, attributes) {
+    element.bind('keypress keydown', function(event) {
+      if(event.keyCode === 37) {
+        scope.$apply(function() {
+          scope.$eval(attributes.left);
+        });
+        event.preventDefault();
+      } else if (event.keyCode === 39) {
+        scope.$apply(function() {
+          scope.$eval(attributes.right);
+        });
+        event.preventDefault();
+      }
+    });
+  };
+});
