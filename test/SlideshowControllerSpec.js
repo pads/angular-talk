@@ -2,6 +2,7 @@ describe('Slideshow Controller', function() {
 
   var scope;
   var controller;
+  var routeParams;
   var slideSpy;
   var slides = [
     {
@@ -18,8 +19,10 @@ describe('Slideshow Controller', function() {
 
   beforeEach(function() {
     module('slideshow');
-    inject(function($rootScope, $controller, Slide) {
+    inject(function($rootScope, $location, $controller, Slide) {
       scope = $rootScope.$new();
+
+      routeParams = {id: 1};
 
       slideSpy = Slide;
       spyOn(slideSpy, 'get').andCallFake(function (param) {
@@ -29,7 +32,9 @@ describe('Slideshow Controller', function() {
 
       controller = $controller('slideshowController', {
         $scope: scope,
-        Slide: slideSpy
+        Slide: slideSpy,
+        $routeParams: routeParams,
+        $location: $location
       });
     });
   });
@@ -43,7 +48,7 @@ describe('Slideshow Controller', function() {
   });
 
   it('should be able to fetch the next slide', function() {
-   scope.nextSlide();
+    scope.nextSlide();
 
     expect(scope.currentSlide).toEqual(slides[1]);
   });

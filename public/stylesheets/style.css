@@ -30,7 +30,7 @@ img {
 
 article {
     position: relative;
-    height: 530px;
+    height: 555px;
     padding: 20px;
     border: 1px solid #e1e1e1;
     border-radius: 3px;
@@ -40,6 +40,17 @@ article {
 pre {
     padding: 10px;
     background: #d3d3d3;
+}
+
+input, textarea {
+    display: block;
+    margin: 20px;
+    padding: 10px;
+    width: 95%;
+}
+
+.pure-button {
+    font-size: 16px;
 }
 
 #edit-button {

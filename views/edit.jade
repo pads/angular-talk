@@ -1,1 +1,10 @@
-p TODO
+a#edit-button.pure-button.fa.fa-reply(data-ng-href='/slide/{{currentSlide.id}}')
+p You are editing slide number {{currentSlide.id}}
+article
+    input(type='text', data-ng-model='currentSlide.id', placeholder='slide number')
+    input(type='text', data-ng-model='currentSlide.title', placeholder='title')
+    textarea(data-ng-model='currentSlide.content',
+             rows='5', placeholder='contents')
+    input(type='text',
+          data-ng-model='currentSlide.image', placeholder='image URL')
+    button.pure-button.pull-right.fa-fa-save(data-ng-click='updateSlide(currentSlide)') Save

@@ -7,11 +7,15 @@ var utilsModule = angular.module('utils', []);
 mainModule.config(function ($routeProvider, $locationProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: '/slide.html',
+      templateUrl: '/templates/slide.html',
+      controller: 'slideshowController',
+    })
+    .when('/slide/:slideId', {
+      templateUrl: '/templates/slide.html',
       controller: 'slideshowController'
     })
     .when('/edit/:slideId', {
-      templateUrl: '/edit.html',
+      templateUrl: '/templates/edit.html',
       controller: 'editController'
     });
   $locationProvider.html5Mode(true);
@@ -23,12 +27,11 @@ mainModule.controller('applicationController', ['$scope', function ($scope) {
   }
 }]);
 
-slideshowModule.controller('slideshowController', ['$scope', 'Slide',
-  function ($scope, Slide) {
-
-    $scope.currentSlide = Slide.get({slideId: 1});
+slideshowModule.controller('slideshowController', ['$location', '$scope', '$routeParams', 'Slide',
+  function ($location, $scope, $routeParams, Slide) {
+    var slideId = parseInt($routeParams.slideId ? $routeParams.slideId : 1, 10);
+    $scope.currentSlide = Slide.get({slideId: slideId});
     $scope.allSlides = Slide.query();
-    $scope.slideIndex = 0;
 
     $scope.$on('right-key', function() {
       $scope.nextSlide();
@@ -39,30 +42,46 @@ slideshowModule.controller('slideshowController', ['$scope', 'Slide',
     });
 
     $scope.previousSlide = function () {
-      $scope.slideIndex--;
-      $scope.currentSlide = Slide.get({slideId: $scope.slideIndex + 1});
+      slideId--;
+      $scope.currentSlide = Slide.get({slideId: slideId});
+
+      $location.path('/slide/' + slideId);
     };
 
     $scope.nextSlide = function () {
-      $scope.slideIndex++;
-      $scope.currentSlide = Slide.get({slideId: $scope.slideIndex + 1});
+      slideId++;
+      $scope.currentSlide = Slide.get({slideId: slideId});
+
+      $location.path('/slide/' + slideId);
     };
   }
 ]);
 
-slideshowModule.controller('editController', ['$scope', 'Slide',
-  function ($scope, Slide) {
+slideshowModule.controller('editController', ['$scope', '$routeParams', 'Slide',
+  function ($scope, $routeParams, Slide) {
+    $scope.currentSlide = Slide.get({slideId: $routeParams.slideId});
 
+    $scope.updateSlide = function (slide) {
+      slide.$save();
+    };
   }
 ]);
 
 slideshowModule.factory('Slide', ['$resource', function ($resource) {
-  return $resource('/api/slides/:slideId', {}, {
-    get: {
-      method: 'GET',
-      cache: true
+  return $resource('/api/slides/:slideId',
+    {
+      slideId: '@id',
+      title: '@title',
+      content: '@content',
+      image: '@image'
+    },
+    {
+      get: {
+        method: 'GET',
+        cache: true
+      }
     }
-  });
+    );
 }]);
 
 utilsModule.directive('arrowKey', function () {

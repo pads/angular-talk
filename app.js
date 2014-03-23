@@ -31,11 +31,15 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/slide.html', routes.slide);
-app.get('/edit.html', routes.edit);
+app.get('/edit/:id', routes.index);
+app.get('/slide/:id', routes.index);
 
-app.get('/api/slides', slides.slides);
-app.get('/api/slides/:id', slides.slide);
+app.get('/templates/slide.html', routes.slide);
+app.get('/templates/edit.html', routes.edit);
+
+app.get('/api/slides', slides.all);
+app.get('/api/slides/:id', slides.get);
+app.post('/api/slides/:id', slides.save);
 
 mongoose.connect('mongodb://localhost/angular-talk');
 mongoose.connection.once('open', function() {
