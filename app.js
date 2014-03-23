@@ -8,6 +8,7 @@ var routes = require('./routes');
 var slides = require('./routes/slides');
 var http = require('http');
 var path = require('path');
+var mongoose = require('mongoose');
 
 var app = express();
 
@@ -32,6 +33,11 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/api/slides', slides.slides);
 app.get('/api/slides/:id', slides.slide);
+
+mongoose.connect('mongodb://localhost/angular-talk');
+mongoose.connection.once('open', function() {
+  console.log('Connected to database');
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -1,27 +1,17 @@
-var slides = [
-  {
-    id: 1,
-    title: 'Foo',
-    contents: '<h2>Subtitle</h2><ul><li>List Item</li><li>List Item</li></ul><pre>Some code</pre>',
-    image: 'http://placekitten.com/200/200'
-  },
-  {
-    id: 2,
-    title: 'Bar',
-    contents: '<b>Foo</b>'
-  },
-  {
-    id: 3,
-    title: 'Baz',
-    contents: '<b>Lurman</b>'
-  }
-];
+var Slide = require('../models/Slide');
 
 exports.slide = function(req, res) {
-  res.send(slides[req.params.id - 1]);
+  Slide.findOne({id: req.params.id}, function(err, slide) {
+    console.log('Found slide:');
+    console.log(slide);
+    res.send(slide);
+  });
 };
 
 exports.slides = function(req, res) {
-
-  res.send(slides);
+  Slide.find(function (err, slides) {
+    console.log('Found slides:');
+    console.log(slides);
+    res.send(slides);
+  });
 };
