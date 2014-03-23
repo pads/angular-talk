@@ -41,7 +41,8 @@ app.get('/api/slides', slides.all);
 app.get('/api/slides/:id', slides.get);
 app.post('/api/slides/:id', slides.save);
 
-mongoose.connect('mongodb://localhost/angular-talk');
+var dbURI = process.env.MONGOHQ_URL || 'mongodb://localhost/angular-talk'
+mongoose.connect(dbURI);
 mongoose.connection.once('open', function() {
   console.log('Connected to database');
 });
