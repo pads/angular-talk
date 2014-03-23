@@ -21,6 +21,7 @@ Navigate to `http://localhost:3000`
 ## Testing
 
     npm install -g karma-cli
+    karma start karma.config.js --single-run
 
 # Demo
 
