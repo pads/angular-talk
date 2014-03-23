@@ -1,6 +1,27 @@
-var mainModule = angular.module('mainApp', ['ngSanitize', 'slideshow', 'utils']);
+var mainModule = angular.module('mainApp', [
+  'ngSanitize', 'ngRoute', 'slideshow', 'utils'
+]);
 var slideshowModule = angular.module('slideshow', ['ngResource']);
 var utilsModule = angular.module('utils', []);
+
+mainModule.config(function ($routeProvider, $locationProvider) {
+  $routeProvider
+    .when('/', {
+      templateUrl: '/slide.html',
+      controller: 'slideshowController'
+    })
+    .when('/edit/:slideId', {
+      templateUrl: '/edit.html',
+      controller: 'editController'
+    });
+  $locationProvider.html5Mode(true);
+});
+
+mainModule.controller('applicationController', ['$scope', function ($scope) {
+  $scope.emitKeyEvent = function(keyName) {
+    $scope.$broadcast(keyName);
+  }
+}]);
 
 slideshowModule.controller('slideshowController', ['$scope', 'Slide',
   function ($scope, Slide) {
@@ -8,6 +29,14 @@ slideshowModule.controller('slideshowController', ['$scope', 'Slide',
     $scope.currentSlide = Slide.get({slideId: 1});
     $scope.allSlides = Slide.query();
     $scope.slideIndex = 0;
+
+    $scope.$on('right-key', function() {
+      $scope.nextSlide();
+    });
+
+    $scope.$on('left-key', function() {
+      $scope.previousSlide();
+    });
 
     $scope.previousSlide = function () {
       $scope.slideIndex--;
@@ -18,6 +47,12 @@ slideshowModule.controller('slideshowController', ['$scope', 'Slide',
       $scope.slideIndex++;
       $scope.currentSlide = Slide.get({slideId: $scope.slideIndex + 1});
     };
+  }
+]);
+
+slideshowModule.controller('editController', ['$scope', 'Slide',
+  function ($scope, Slide) {
+
   }
 ]);
 

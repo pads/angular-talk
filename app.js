@@ -31,6 +31,9 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/slide.html', routes.slide);
+app.get('/edit.html', routes.edit);
+
 app.get('/api/slides', slides.slides);
 app.get('/api/slides/:id', slides.slide);
 
