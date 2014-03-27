@@ -8,12 +8,9 @@ article.pure-g
         section(data-ng-bind-html='currentSlide.content')
     .pure-u-1-3(data-ng-if='currentSlide.image')
         img(data-ng-src='{{currentSlide.image}}')
-.pure-g
-    .pure-u-1-2
-        button.pure-button.pull-left.fa.fa-caret-left(
-        data-ng-click='previousSlide()',
-        data-ng-show='currentSlide.id > 1')
-    .pure-u-1-2
-        button.pure-button.pull-right.fa.fa-caret-right(
-        data-ng-click='nextSlide()',
-        data-ng-hide='currentSlide.id == allSlides.length')
+button.previous-button.pure-button.fa.fa-caret-left(
+data-ng-click='previousSlide()',
+data-ng-show='currentSlide.id > 1')
+button.next-button.pure-button.fa.fa-caret-right(
+data-ng-click='nextSlide()',
+data-ng-hide='currentSlide.id == allSlides.length')

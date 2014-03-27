@@ -30,7 +30,7 @@ img {
 
 article {
     position: relative;
-    height: 555px;
+    min-height: 555px;
     padding: 20px;
     border: 1px solid #e1e1e1;
     border-radius: 3px;
@@ -54,12 +54,25 @@ i {
 }
 
 .pure-button {
-    font-size: 16px;
+    font-size: 24px;
 }
 
 #edit-button {
     font-size: 12px;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 20px;
+    right: 20px;
+}
+
+.next-button, .previous-button {
+    position: fixed;
+    bottom: 20px;
+}
+
+.next-button {
+    right: 20px;
+}
+
+.previous-button {
+    left: 20px;
 }
