@@ -14,7 +14,7 @@ Requires [node](http://nodejs.org/)
 
 ## Running
 
-    node app.js
+    npm start
 
 Navigate to `http://localhost:3000`
 
